@@ -1,3 +1,7 @@
+.placeholderDragAndDropQuiz .placeholders {
+    font-size: 20px;
+    font-family: monospace;
+}
 .placeholderDragAndDropQuiz .placeholder {
     min-width: 50px;
     position: relative;
