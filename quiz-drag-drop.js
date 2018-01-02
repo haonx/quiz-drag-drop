@@ -1,6 +1,6 @@
 angular
     .module("DragDropQuiz", [])
-    .directive("dragDropQuiz", function () {
+    .directive("dragDropQuiz", function ($sce) {
         return {
             link: function ($scope) {
                 var scope = $scope;
@@ -24,7 +24,7 @@ angular
                 }
                 scope.segments = scope.segments.map(function (segment) {
                     if(typeof segment === 'undefined'){
-                        return '';
+                        segment='';
                     }
                     if(typeof segment==='string'){
                         return {
@@ -38,6 +38,15 @@ angular
                             text: segment.text
                         };
                     }
+                    return segment;
+                });
+                scope.segments = scope.segments.map(function (segment) {
+                    var html;
+                    html = segment.text;
+                    html = html.replace(/\r\n/gi,'<br/>');
+                    html = html.replace(/ /gi,'&nbsp;');
+                    segment.html = html;
+                    segment.html = $sce.trustAsHtml(segment.html);
                     return segment;
                 });
             },
