@@ -26,16 +26,16 @@ angular
                     if(typeof segment === 'undefined'){
                         segment='';
                     }
-                    if(typeof segment==='string'){
-                        return {
-                            typeof:'placeholder',
-                            text: segment
-                        };
-                    }
                     if(typeof segment==='object'){
                         return {
-                            typeof:'raw',
+                            typeof:'placeholder',
                             text: segment.text
+                        };
+                    }
+                    if(typeof segment==='string'){
+                        return {
+                            typeof:'raw',
+                            text: segment
                         };
                     }
                     return segment;
