@@ -3,10 +3,11 @@ angular
     .directive("dragDropQuiz", function () {
         return {
             link: function ($scope) {
+                var scope = $scope;
             },
             templateUrl: "drag-drop-quiz.html",
             scope: {
-                question: "=",
+                placeholder: "=",
                 answers: "="
             }
         };

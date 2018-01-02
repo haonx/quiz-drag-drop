@@ -26,9 +26,9 @@
                 "textContent": null
             };
             scope.answers = scope.quiz.answers;
-            scope.question = scope.quiz.question.split('[!raw!]')[1];
+            scope.placeholder = scope.quiz.question.split('[!raw!]')[1];
         });
 </script>
 <body ng-app="App">
-<drag-drop-quiz question="question" answers="answers"></drag-drop-quiz>
+<drag-drop-quiz placeholder="placeholder" answers="answers"></drag-drop-quiz>
 </body>
