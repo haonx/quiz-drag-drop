@@ -1,12 +1,16 @@
 angular
-    .module("DragDropQuiz", [])
+    .module("DragDropQuiz", ["dndLists"])
     .directive("dragDropQuiz", function ($sce) {
         return {
             link: function ($scope) {
-                function shuffle(a) {
-                    for (var i = a.length - 1; i > 0; i--) {
-                        const j = Math.floor(Math.random() * (i + 1));
-                        [a[i], a[j]] = [a[j], a[i]];
+                function shuffle(b) {
+                    var a = b;
+                    var j, x, i;
+                    for (i = a.length - 1; i > 0; i--) {
+                        j = Math.floor(Math.random() * (i + 1));
+                        x = a[i];
+                        a[i] = a[j];
+                        a[j] = x;
                     }
                     return a;
                 }
