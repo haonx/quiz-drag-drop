@@ -77,7 +77,6 @@ angular
                             break;
                         }
                     }
-                    console.log('apply');
 
                     selectedSegment.answers = [];
                     selectedSegment.answers = [angular.copy(answer)];
@@ -92,9 +91,36 @@ angular
                     }
                     return false;
                 };
+                var runCheckerQuizzesCorrect = function () {
+                    var selectedAnswers = [];
+                    for(var i = 0; i <scope.segments.length;i++){
+                        var segment = scope.segments[i];
+                        var answer = segment.answers[0];
+                        if(typeof answer === 'undefined'){
+                            continue;
+                        }
+                        selectedAnswers.push(answer);
+                    }
+                    var answers_ids = scope.answers.map(function (t) {return t.id; });
+                    var selected_answers_ids = selectedAnswers.map(function (t) { return t.id; });
+                    if(answers_ids.length !== selected_answers_ids.length){
+                        return false;
+                    }
+                    for(var l = 0; l<answers_ids.length;l++){
+                        if(answers_ids[l]!==selected_answers_ids[l]){
+                            return false;
+                        }
+                    }
+                    scope.eventCorrect();
+                };
+
+                scope.$watch('segments|json', function () {
+                    runCheckerQuizzesCorrect();
+                })
             },
             templateUrl: "drag-drop-quiz.html",
             scope: {
+                eventCorrect: "&eventAnswersCorrect",
                 placeholder: "=",
                 answers: "="
             }
