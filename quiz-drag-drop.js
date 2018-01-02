@@ -3,11 +3,19 @@ angular
     .directive("dragDropQuiz", function ($sce) {
         return {
             link: function ($scope) {
+                function shuffle(a) {
+                    for (var i = a.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [a[i], a[j]] = [a[j], a[i]];
+                    }
+                    return a;
+                }
                 var scope = $scope;
                 var placeholderSign = 'placeholderSegment';
                 scope.placeholderSegments = scope.placeholder.replace(/{\d}/gi, placeholderSign).split(placeholderSign);
 
                 scope.segmentsCollection = [scope.placeholderSegments, scope.answers];
+                scope.shuffleAnswers = shuffle(scope.answers);
                 scope.lengths = [];
                 for(var i = 0; i<scope.segmentsCollection.length;i++) {
                     scope.lengths.push(scope.segmentsCollection[i].length);
