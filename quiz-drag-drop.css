@@ -1,0 +1,29 @@
+.placeholderDragAndDropQuiz .placeholder {
+    min-width: 50px;
+    position: relative;
+    margin: 0 4px;
+    padding: 0 4px;
+    text-align: center;
+}
+.placeholderDragAndDropQuiz .placeholder .underline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    border: solid 2px #333;
+    border-top: none;
+}
+.placeholderDragAndDropQuiz .placeholder.active .underline {
+    border-color: #09f;
+}
+.placeholderDragAndDropQuiz .placeholder .answer {
+    color: rgb(100, 221, 23);
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.placeholderDragAndDropQuiz .placeholder {
+    display: inline-block;
+}
