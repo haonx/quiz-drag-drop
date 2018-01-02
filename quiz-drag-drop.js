@@ -4,7 +4,7 @@ angular
         return {
             link: function ($scope) {
                 function shuffle(b) {
-                    var a = b;
+                    var a = angular.copy(b);
                     var j, x, i;
                     for (i = a.length - 1; i > 0; i--) {
                         j = Math.floor(Math.random() * (i + 1));
@@ -61,6 +61,18 @@ angular
                     segment.html = $sce.trustAsHtml(segment.html);
                     return segment;
                 });
+                scope.segments = scope.segments.map(function (segment) {
+                    segment.answers = [];
+                    return segment;
+                });
+                scope.selectAnswer = function (answer) {
+                    for(var i = 0;i<scope.segments.length;i++){
+                        if(scope.segments[i].answers.length === 0) {
+                            scope.segments[i].answers = [angular.copy(answer)];
+                            break;
+                        }
+                    }
+                };
             },
             templateUrl: "drag-drop-quiz.html",
             scope: {

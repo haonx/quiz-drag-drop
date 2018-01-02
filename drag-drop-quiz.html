@@ -4,15 +4,25 @@
             <span ng-repeat="segment in segments track by $index">
                 <span ng-if="segment.typeof === 'raw'" ng-bind-html="segment.html"></span>
                 <span ng-if="segment.typeof === 'placeholder'" class="placeholder" ng-class="{active:segment.answer_selected}">
-                     <span class="answer" style="color: rgb(100, 221, 23); width: 53px;">
-                         <span>{{segment.answer_selected.text}}</span>
+                     <span class="answer" dnd-list="segment.answers"
+                           dnd-drop="segment.answers=[item]"
+                           style="color: rgb(100, 221, 23); width: 53px;">
+                         <span style="visibility: hidden;position: static;">{{segment.text}}</span>
+                         <span ng-repeat="answer in segment.answers"
+                               dnd-draggable="answer"
+                               dnd-moved="segment.answers=[]"
+                               ng-click="segment.answers=[]">{{answer.text}}</span>
                      </span>
                      <span class="underline"></span>
                 </span>
             </span>
         </div>
     </div>
-    <div class="answers">
-        <div class="answer" style="color: rgb(100, 221, 23);" ng-repeat="answer in shuffleAnswers">{{answer.text}}</div>
+    <div class="answers" dnd-list="[]">
+        <div class="answer" style="color: rgb(100, 221, 23);" ng-repeat="answer in shuffleAnswers"
+             dnd-draggable="answer"
+             dnd-effect-allowed="copy"
+             ng-click="selectAnswer(answer)"
+        >{{answer.text}}</div>
     </div>
 </div>

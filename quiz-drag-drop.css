@@ -19,7 +19,9 @@
 }
 .placeholderDragAndDropQuiz .placeholder .answer {
     color: rgb(100, 221, 23);
+    text-align: center;
     padding: 10px;
+    padding-bottom: 0;
     display: inline-block;
     cursor: pointer;
     white-space: nowrap;
@@ -46,4 +48,15 @@
     white-space: nowrap;
     text-align: left;
     font-size: 20px;
+    position: relative;
+}
+.placeholderDragAndDropQuiz .answer span{
+    left: 0;
+    width: 100%;
+    position: absolute;
+}
+
+.dndPlaceholder {
+    display: inline;
+    width: 53px;
 }
