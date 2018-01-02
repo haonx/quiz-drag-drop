@@ -1,11 +1,12 @@
 <div class="placeholderDragAndDropQuiz placeholderQuiz">
     <div class="placeholders">
         <div class="textblock raw">
-            <span ng-repeat="segment in segments track by $index"
-                  ng-class="{placeholder:(segment.typeof=='placeholder'),raw:(segment.typeof=='raw')}">
-                <span ng-bind-html="segment.html"></span>
-                <span class="placeholder" ng-class="{active:segment.answer_selected}">
-                     <span class="answer" style="color: rgb(100, 221, 23); width: 53px;">{{segment.answer_selected.text}}</span>
+            <span ng-repeat="segment in segments track by $index">
+                <span ng-if="segment.typeof === 'raw'" ng-bind-html="segment.html"></span>
+                <span ng-if="segment.typeof === 'placeholder'" class="placeholder" ng-class="{active:segment.answer_selected}">
+                     <span class="answer" style="color: rgb(100, 221, 23); width: 53px;">
+                         <span>{{segment.answer_selected.text}}</span>
+                     </span>
                      <span class="underline"></span>
                 </span>
             </span>
