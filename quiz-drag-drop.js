@@ -22,6 +22,24 @@ angular
                         }
                     }
                 }
+                scope.segments = scope.segments.map(function (segment) {
+                    if(typeof segment === 'undefined'){
+                        return '';
+                    }
+                    if(typeof segment==='string'){
+                        return {
+                            typeof:'placeholder',
+                            text: segment
+                        };
+                    }
+                    if(typeof segment==='object'){
+                        return {
+                            typeof:'raw',
+                            text: segment.text
+                        };
+                    }
+                    return segment;
+                });
             },
             templateUrl: "drag-drop-quiz.html",
             scope: {
