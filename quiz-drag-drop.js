@@ -66,12 +66,31 @@ angular
                     return segment;
                 });
                 scope.selectAnswer = function (answer) {
+                    var selectedSegment;
+                    if(scope.isSelectedAnswer(answer)){
+                        return;
+                    }
                     for(var i = 0;i<scope.segments.length;i++){
-                        if(scope.segments[i].answers.length === 0) {
+                        if(scope.segments[i].answers.length === 0 && scope.segments[i].typeof === 'placeholder') {
+                            selectedSegment = scope.segments[i];
                             scope.segments[i].answers = [angular.copy(answer)];
                             break;
                         }
                     }
+                    console.log('apply');
+
+                    selectedSegment.answers = [];
+                    selectedSegment.answers = [angular.copy(answer)];
+                };
+                scope.isSelectedAnswer = function (answer) {
+                    for(var i = 0;i<scope.segments.length;i++){
+                        if(scope.segments[i].answers.length > 0){
+                            if (scope.segments[i].answers[0].id === answer.id) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
                 };
             },
             templateUrl: "drag-drop-quiz.html",

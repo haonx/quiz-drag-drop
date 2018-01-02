@@ -6,7 +6,7 @@
                 <span ng-if="segment.typeof === 'placeholder'" class="placeholder" ng-class="{active:segment.answer_selected}">
                      <span class="answer" dnd-list="segment.answers"
                            dnd-drop="segment.answers=[item]"
-                           style="color: rgb(100, 221, 23); width: 53px;">
+                           style=" width: 53px;">
                          <span style="visibility: hidden;position: static;">{{segment.text}}</span>
                          <span ng-repeat="answer in segment.answers"
                                dnd-draggable="answer"
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="answers" dnd-list="[]">
-        <div class="answer" style="color: rgb(100, 221, 23);" ng-repeat="answer in shuffleAnswers"
+        <div class="answer" ng-class="{selected:isSelectedAnswer(answer)}" ng-repeat="answer in shuffleAnswers"
              dnd-draggable="answer"
              dnd-effect-allowed="copy"
              ng-click="selectAnswer(answer)"

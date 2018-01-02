@@ -50,6 +50,9 @@
     font-size: 20px;
     position: relative;
 }
+.placeholderDragAndDropQuiz .answers .answer.selected {
+    color: grey;
+}
 .placeholderDragAndDropQuiz .answer span{
     left: 0;
     width: 100%;
