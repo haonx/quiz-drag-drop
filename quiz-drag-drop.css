@@ -15,15 +15,17 @@
     border-top: none;
 }
 .placeholderDragAndDropQuiz .placeholder.active .underline {
+    display: none;
     border-color: #09f;
 }
 .placeholderDragAndDropQuiz .placeholder .answer {
+    width: 53px;
     color: rgb(100, 221, 23);
     text-align: center;
     padding: 10px;
     padding-bottom: 0;
     display: inline-block;
-    cursor: pointer;
+    cursor: move;
     white-space: nowrap;
 }
 .placeholderDragAndDropQuiz .placeholder {
@@ -37,7 +39,7 @@
 .placeholderDragAndDropQuiz .answers .answer {
     color: rgb(100, 221, 23);
     display: inline-block;
-    cursor: pointer;
+    cursor: move;
 }
 
 .placeholderDragAndDropQuiz .answer {
@@ -54,6 +56,7 @@
     color: grey;
 }
 .placeholderDragAndDropQuiz .answer span{
+    font-family: monospace;
     left: 0;
     width: 100%;
     position: absolute;
@@ -62,4 +65,13 @@
 .dndPlaceholder {
     display: inline;
     width: 53px;
+}
+
+.placeholderDragAndDropQuiz .placeholder.active{
+    min-width: unset;
+}
+.placeholderDragAndDropQuiz .placeholder.active .answer{
+    padding-right: 4px;
+    padding-left: 4px;
+    width:unset;
 }
