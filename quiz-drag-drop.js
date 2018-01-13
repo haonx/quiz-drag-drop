@@ -1,6 +1,6 @@
 angular
     .module("DragDropQuiz", ["dndLists"])
-    .directive("dragDropQuiz", function ($sce) {
+    .directive("dragDropQuiz", ["$sce",function ($sce) {
         return {
             link: function ($scope) {
                 function shuffle(b) {
@@ -126,12 +126,12 @@ angular
             },
             template: '<div class="placeholderDragAndDropQuiz placeholderQuiz"> <div class="placeholders"> <div class="textblock raw"> <span ng-repeat="segment in segments track by $index"> <span ng-if="segment.typeof === \'raw\'" ng-bind-html="segment.html"></span> <span ng-if="segment.typeof === \'placeholder\'" class="placeholder" ng-class="{active:(segment.answers.length > 0)}"> <span class="answer" dnd-list="segment.answers" dnd-drop="segment.answers=[item]"> <span style="visibility: hidden;position: static;">{{segment.text}}</span> <span ng-repeat="answer in segment.answers" dnd-draggable="answer" dnd-moved="segment.answers=[]" ng-click="segment.answers=[]">{{answer.text}}</span> </span> <span class="underline"></span> </span> </span> </div> </div> <div class="answers" dnd-list="[]"> <div class="answer" ng-class="{selected:isSelectedAnswer(answer)}" ng-repeat="answer in shuffleAnswers" dnd-draggable="answer" dnd-effect-allowed="copy" ng-click="selectAnswer(answer)" >{{answer.text}}</div> </div> </div>',
             scope: {
-            eventCorrect: "&eventCorrect",
+                eventCorrect: "&eventCorrect",
                 placeholder: "=",
                 answers: "="
-        }
-    };
-    })
+            }
+        };
+    }])
     .filter('typeof', function () {
         return function (value, wordwise, max, tail) {
             return typeof value;
